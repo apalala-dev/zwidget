@@ -12,7 +12,7 @@ It was created for the Flutter Puzzle Hack.
 
 ## Features
 
-// Show Gif of both example screens
+[Demo gif](media/zwidget_demo.gif)
 
 ## Usage
 
@@ -21,45 +21,53 @@ Use ZWidget in your UI like this:
 ```dart
 
 final child = ZWidget(
-  midChild: someWidget, // middle layer
-  midToTopChild: otherWidget, // layers between mid and top child
-  topChild: topChild, // layer at the top of the Stack
-  midToBothild: otherWidget, // layers between mid and bot child
-  botChild: botChild, // layer at the bottom of the Stack
-  rotationX: pi / 3, // rotation around X axis
-  rotationY: -pi / 4, // rotation around Y axis
-  layers: 11, // Number of layers. Always odd (increased if even)
-  depth: 16, // Space between layers
+  midChild: someWidget,
+  // middle layer
+  midToTopChild: otherWidget,
+  // layers between mid and top child
+  topChild: topChild,
+  // layer at the top of the Stack
+  midToBothild: otherWidget,
+  // layers between mid and bot child
+  botChild: botChild,
+  // layer at the bottom of the Stack
+  rotationX: pi / 3,
+  // rotation around X axis
+  rotationY: -pi / 4,
+  // rotation around Y axis
+  layers: 11,
+  // Number of layers. Always odd (increased if even)
+  depth: 16,
+  // Space between layers
   direction: ZDirection.forwards, // forwards, backwards or both compared to the midChild.
 );
 ```
 
 You need to think in terms of layers when using `ZWidget`. They are visibles in the picture below:
 
-// Insert picture
+[ZWidget layers](media/layers.png)
 
-There is always an odd number of `layers`.
-If you define an even number, it will be increased to be an odd number.
-Increase `depth` to increase their spacing.
+There is always an odd number of `layers`. If you define an even number, it will be increased to be
+an odd number. Increase `depth` to increase their spacing.
 
 `ZDirection` can be `forward`, `backward` or `both`.
 
-Mid layer is the `midChild`.
-Depending on the `ZDirection`, other layers are displayed above or below the `midChild`.
-You can define the `botChild` for the child at the bottom of the Stack and `topChild` for the one at the top.
-Define Widgets between extremities and `midChild` with `midToTopChild` and `midToBotChild`.
+Mid layer is the `midChild`. Depending on the `ZDirection`, other layers are displayed above or
+below the `midChild`. You can define the `botChild` for the child at the bottom of the Stack
+and `topChild` for the one at the top. Define Widgets between extremities and `midChild`
+with `midToTopChild` and `midToBotChild`.
 
 Use the `alignment` property to set the Transform origin.
 
-To effectively see the 3D effect, you must define a rotation to the ZWidget using `rotationX` and `rotationY`.
-
+To effectively see the 3D effect, you must define a rotation to the ZWidget using `rotationX`
+and `rotationY`.
 
 See the example project for more details.
 
 ## Performance considerations
 
-If ZWidget has 11 layers, it means that 11 Widgets will be drawn.
-Try to limit the complexity of widgets used for the 3D effect.
+If ZWidget has 11 layers, it means that 11 Widgets will be drawn. Try to limit the complexity of
+widgets used for the 3D effect.
 
 For instance, an opaque Image could use simple Containers to simulate a 3D effect:
 

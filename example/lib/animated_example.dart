@@ -63,7 +63,7 @@ class _AnimatedExampleState extends State<AnimatedExample> {
               midChild: ClipRect(
                   child: CustomPaint(
                 painter: ExampleCustomPainter(),
-                size: const Size(100, 100),
+                size: const Size(200, 200),
               )),
               rotationX: _rotationX,
               rotationY: _rotationY,
