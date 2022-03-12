@@ -12,7 +12,7 @@ It was created for the Flutter Puzzle Hack.
 
 ## Features
 
-[Demo gif](media/zwidget_demo.gif)
+![Demo gif](media/zwidget_demo.gif)
 
 ## Usage
 
@@ -45,7 +45,7 @@ final child = ZWidget(
 
 You need to think in terms of layers when using `ZWidget`. They are visibles in the picture below:
 
-[ZWidget layers](media/layers.png)
+![ZWidget layers](media/layers.png)
 
 There is always an odd number of `layers`. If you define an even number, it will be increased to be
 an odd number. Increase `depth` to increase their spacing.
