@@ -51,107 +51,25 @@ class _ZWidgetShowcaseState extends State<ZWidgetShowcase> {
           )
         ],
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          _textOnly(),
-          _backwardOnly(),
-          _forwardOnly(),
-          _bothDirections(),
-          _otherWidgets(),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            _backwardOnly(),
+            _forwardOnly(),
+            _bothDirections(),
+            _builder(),
+            _otherWidgets(),
+          ],
+        ),
       ),
-    );
-  }
-
-  Widget _textOnly() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        const ZWidget(
-          midChild: Text(
-            'ZWidget',
-            style: TextStyle(
-                color: Colors.blue, fontSize: 20, fontWeight: FontWeight.bold),
-          ),
-          midToBotChild: Text(
-            'ZWidget',
-            style: TextStyle(
-                color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
-          ),
-          rotationX: pi / 4,
-          rotationY: pi / 4,
-          layers: 5,
-          depth: 8,
-          direction: ZDirection.backwards,
-        ),
-        Column(children: const [
-          ZWidget(
-            midChild: Text(
-              'Example',
-              style: TextStyle(
-                  color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            midToBotChild: Text(
-              'Example',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
-            ),
-            rotationX: -pi / 3,
-            rotationY: 0,
-            layers: 5,
-            depth: 8,
-            direction: ZDirection.backwards,
-          ),
-          ZWidget(
-            midChild: Text(
-              'Example',
-              style: TextStyle(
-                  color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            midToBotChild: Text(
-              'Example',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
-            ),
-            rotationX: pi / 3,
-            rotationY: 0,
-            layers: 5,
-            depth: 8,
-            direction: ZDirection.backwards,
-          ),
-        ]),
-        const ZWidget(
-          midChild: Text(
-            'Text',
-            style: TextStyle(
-                color: Colors.green, fontSize: 26, fontWeight: FontWeight.bold),
-          ),
-          midToBotChild: Text(
-            'Text',
-            style: TextStyle(
-                color: Colors.black, fontSize: 26, fontWeight: FontWeight.bold),
-          ),
-          rotationX: 0,
-          rotationY: -pi / 3,
-          layers: 5,
-          depth: 8,
-          direction: ZDirection.backwards,
-        ),
-      ],
     );
   }
 
   Widget _backwardOnly() {
     return Column(children: [
-      const Text('ZDirection.backwards'),
-      const SizedBox(height: 10),
+      _title("ZWidget.backwards()"),
       Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-        ZWidget(
+        ZWidget.backwards(
           midChild: Container(
             width: 60,
             height: 60,
@@ -166,9 +84,8 @@ class _ZWidgetShowcaseState extends State<ZWidgetShowcase> {
           rotationY: -pi / 4,
           layers: 5,
           depth: 8,
-          direction: ZDirection.backwards,
         ),
-        ZWidget(
+        ZWidget.backwards(
           midChild: Container(
             width: 60,
             height: 60,
@@ -183,9 +100,8 @@ class _ZWidgetShowcaseState extends State<ZWidgetShowcase> {
           rotationY: -pi / 4,
           layers: 15,
           depth: 20,
-          direction: ZDirection.backwards,
         ),
-        ZWidget(
+        ZWidget.backwards(
           midChild: Container(
             width: 60,
             height: 60,
@@ -206,18 +122,25 @@ class _ZWidgetShowcaseState extends State<ZWidgetShowcase> {
           rotationY: 0,
           layers: 5,
           depth: 8,
-          direction: ZDirection.backwards,
         ),
-        ZWidget(
+        ZWidget.backwards(
           midChild: Container(
             width: 60,
             height: 60,
             decoration: const BoxDecoration(
               shape: BoxShape.circle,
-              color: Colors.pink,
+              color: Colors.amber,
             ),
           ),
           midToBotChild: Container(
+            width: 60,
+            height: 60,
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.red,
+            ),
+          ),
+          botChild: Container(
             width: 60,
             height: 60,
             decoration: const BoxDecoration(
@@ -229,7 +152,9 @@ class _ZWidgetShowcaseState extends State<ZWidgetShowcase> {
           rotationY: pi / 6,
           layers: 11,
           depth: 16,
-          direction: ZDirection.backwards,
+          perspective: 1,
+          alignment: FractionalOffset.center,
+          debug: false,
         )
       ]),
     ]);
@@ -237,10 +162,9 @@ class _ZWidgetShowcaseState extends State<ZWidgetShowcase> {
 
   Widget _forwardOnly() {
     return Column(children: [
-      const Text('ZDirection.forwards'),
-      const SizedBox(height: 10),
+      _title("ZWidget.forwards()"),
       Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-        ZWidget(
+        ZWidget.forwards(
           midChild: Container(
             width: 60,
             height: 60,
@@ -260,9 +184,8 @@ class _ZWidgetShowcaseState extends State<ZWidgetShowcase> {
           rotationY: -pi / 4,
           layers: 5,
           depth: 16,
-          direction: ZDirection.forwards,
         ),
-        ZWidget(
+        ZWidget.forwards(
           midChild: Container(
             width: 60,
             height: 60,
@@ -282,9 +205,8 @@ class _ZWidgetShowcaseState extends State<ZWidgetShowcase> {
           rotationY: -pi / 4,
           layers: 11,
           depth: 16,
-          direction: ZDirection.forwards,
         ),
-        ZWidget(
+        ZWidget.forwards(
           midChild: Container(
             width: 60,
             height: 60,
@@ -304,7 +226,7 @@ class _ZWidgetShowcaseState extends State<ZWidgetShowcase> {
           topChild: Container(
             width: 60,
             height: 60,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               shape: BoxShape.circle,
               color: Colors.greenAccent,
             ),
@@ -313,9 +235,8 @@ class _ZWidgetShowcaseState extends State<ZWidgetShowcase> {
           rotationY: 0,
           layers: 5,
           depth: 8,
-          direction: ZDirection.forwards,
         ),
-        ZWidget(
+        ZWidget.forwards(
           midChild: Container(
             width: 60,
             height: 60,
@@ -335,7 +256,7 @@ class _ZWidgetShowcaseState extends State<ZWidgetShowcase> {
           topChild: Container(
             width: 60,
             height: 60,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               shape: BoxShape.circle,
               color: Colors.red,
             ),
@@ -344,7 +265,6 @@ class _ZWidgetShowcaseState extends State<ZWidgetShowcase> {
           rotationY: pi / 6,
           layers: 11,
           depth: 32,
-          direction: ZDirection.forwards,
         )
       ]),
     ]);
@@ -352,10 +272,9 @@ class _ZWidgetShowcaseState extends State<ZWidgetShowcase> {
 
   Widget _bothDirections() {
     return Column(children: [
-      const Text('ZDirection.both'),
-      const SizedBox(height: 10),
+      _title("ZWidget.bothDirections()"),
       Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-        ZWidget(
+        ZWidget.bothDirections(
           midChild: Container(
             width: 60,
             height: 60,
@@ -385,9 +304,8 @@ class _ZWidgetShowcaseState extends State<ZWidgetShowcase> {
           rotationY: -pi / 4,
           layers: 5,
           depth: 32,
-          direction: ZDirection.both,
         ),
-        ZWidget(
+        ZWidget.bothDirections(
           midChild: Container(
             width: 60,
             height: 60,
@@ -417,9 +335,8 @@ class _ZWidgetShowcaseState extends State<ZWidgetShowcase> {
           rotationY: -pi / 4,
           layers: 15,
           depth: 24,
-          direction: ZDirection.both,
         ),
-        ZWidget(
+        ZWidget.bothDirections(
           midChild: Container(
             width: 60,
             height: 60,
@@ -447,7 +364,7 @@ class _ZWidgetShowcaseState extends State<ZWidgetShowcase> {
           topChild: Container(
             width: 60,
             height: 60,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               shape: BoxShape.circle,
               color: Colors.green,
             ),
@@ -455,7 +372,7 @@ class _ZWidgetShowcaseState extends State<ZWidgetShowcase> {
           botChild: Container(
             width: 60,
             height: 60,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               shape: BoxShape.circle,
               color: Colors.green,
             ),
@@ -464,9 +381,8 @@ class _ZWidgetShowcaseState extends State<ZWidgetShowcase> {
           rotationY: 0,
           layers: 9,
           depth: 24,
-          direction: ZDirection.both,
         ),
-        ZWidget(
+        ZWidget.bothDirections(
           midChild: Container(
             width: 60,
             height: 60,
@@ -486,7 +402,7 @@ class _ZWidgetShowcaseState extends State<ZWidgetShowcase> {
           midToTopChild: Container(
             width: 60,
             height: 60,
-            child: Center(
+            child: const Center(
                 child: Icon(
               Icons.star,
               color: Colors.white,
@@ -499,7 +415,7 @@ class _ZWidgetShowcaseState extends State<ZWidgetShowcase> {
           topChild: Container(
             width: 60,
             height: 60,
-            child: Center(
+            child: const Center(
                 child: Icon(
               Icons.star,
               color: Colors.white,
@@ -522,30 +438,180 @@ class _ZWidgetShowcaseState extends State<ZWidgetShowcase> {
           rotationY: pi / 6,
           layers: 11,
           depth: 25,
-          direction: ZDirection.both,
         )
+      ]),
+    ]);
+  }
+
+  Widget _builder() {
+    final rainbow = [
+      Colors.orange,
+      Colors.brown,
+      Colors.red,
+      Colors.lime,
+      Colors.blue,
+      Colors.black,
+      Colors.green,
+      Colors.pink,
+      Colors.deepPurpleAccent,
+      Colors.cyanAccent,
+      Colors.teal,
+    ];
+    return Column(children: [
+      _title("ZWidget.builder()"),
+      Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+        ZWidget.builder(
+          builder: (index) {
+            return Container(
+              width: 60,
+              height: 60,
+              color: Colors.blue.withOpacity(0.6),
+              child: Center(
+                child: Text("$index",
+                    style: Theme.of(context).textTheme.headline3),
+              ),
+            );
+          },
+          rotationX: pi / 4,
+          rotationY: -pi / 4,
+          layers: 3,
+          depth: 75,
+          direction: ZDirection.both,
+        ),
+        ZWidget.builder(
+          builder: (index) {
+            return Container(
+              width: 60,
+              height: 60,
+              color: Color.lerp(Colors.amber, Colors.red.shade900, index / 11),
+            );
+          },
+          rotationX: pi / 6,
+          rotationY: pi / 5,
+          layers: 11,
+          depth: 20,
+          direction: ZDirection.both,
+        ),
+        ZWidget.builder(
+          builder: (index) {
+            return Icon(
+              Icons.cake,
+              size: 60,
+              color: rainbow[index],
+            );
+          },
+          rotationX: pi / 7,
+          rotationY: -pi / 4,
+          layers: 11,
+          depth: 50,
+          direction: ZDirection.both,
+        ),
+        ZWidget.builder(
+          builder: (index) {
+            return Icon(
+              Icons.star,
+              size: 60,
+              color: Color.lerp(Colors.brown, Colors.grey, index / 7),
+            );
+          },
+          rotationX: -pi / 7,
+          rotationY: -pi / 9,
+          layers: 11,
+          depth: 25,
+          direction: ZDirection.both,
+        ),
       ]),
     ]);
   }
 
   Widget _otherWidgets() {
     return Column(children: [
-      const Text('Other widgets'),
-      const SizedBox(height: 10),
+      _title("Other widgets"),
+      Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+        ZWidget.backwards(
+          midChild: const Text(
+            'ZWidget',
+            style: TextStyle(
+                color: Colors.blue, fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+          midToBotChild: const Text(
+            'ZWidget',
+            style: TextStyle(
+                color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+          rotationX: pi / 4,
+          rotationY: pi / 4,
+          layers: 5,
+          depth: 8,
+        ),
+        Column(children: [
+          ZWidget.backwards(
+            midChild: const Text(
+              'Example',
+              style: TextStyle(
+                  color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            midToBotChild: const Text(
+              'Example',
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold),
+            ),
+            rotationX: -pi / 3,
+            rotationY: 0,
+            layers: 5,
+            depth: 8,
+          ),
+          ZWidget.backwards(
+            midChild: const Text(
+              'Example',
+              style: TextStyle(
+                  color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            midToBotChild: const Text(
+              'Example',
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold),
+            ),
+            rotationX: pi / 3,
+            rotationY: 0,
+            layers: 5,
+            depth: 8,
+          ),
+        ]),
+        ZWidget.backwards(
+          midChild: const Text(
+            'Text',
+            style: TextStyle(
+                color: Colors.green, fontSize: 26, fontWeight: FontWeight.bold),
+          ),
+          midToBotChild: const Text(
+            'Text',
+            style: TextStyle(
+                color: Colors.black, fontSize: 26, fontWeight: FontWeight.bold),
+          ),
+          rotationX: 0,
+          rotationY: -pi / 3,
+          layers: 5,
+          depth: 8,
+        ),
+      ]),
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          const ZWidget(
-            midChild: FlutterLogo(
+          ZWidget.backwards(
+            midChild: const FlutterLogo(
               size: 50,
             ),
             rotationX: pi / 6,
             rotationY: pi / 3,
             layers: 11,
             depth: 12,
-            direction: ZDirection.backwards,
           ),
-          ZWidget(
+          ZWidget.backwards(
             midChild: Image.asset(
               'assets/dashatar.png',
               width: 100,
@@ -556,11 +622,10 @@ class _ZWidgetShowcaseState extends State<ZWidgetShowcase> {
             rotationY: pi / 4,
             layers: 11,
             depth: 12,
-            direction: ZDirection.backwards,
           ),
-          const ZWidget(
-            midChild: Icon(Icons.home_rounded),
-            midToBotChild: Icon(
+          ZWidget.backwards(
+            midChild: const Icon(Icons.home_rounded),
+            midToBotChild: const Icon(
               Icons.home_rounded,
               color: Colors.grey,
             ),
@@ -568,9 +633,8 @@ class _ZWidgetShowcaseState extends State<ZWidgetShowcase> {
             rotationY: -pi / 4,
             layers: 11,
             depth: 12,
-            direction: ZDirection.backwards,
           ),
-          ZWidget(
+          ZWidget.backwards(
             midChild: CustomPaint(
               painter: ExampleCustomPainter(),
               size: const Size(50, 50),
@@ -579,10 +643,19 @@ class _ZWidgetShowcaseState extends State<ZWidgetShowcase> {
             rotationY: -pi / 6,
             layers: 11,
             depth: 12,
-            direction: ZDirection.backwards,
           ),
         ],
       ),
     ]);
+  }
+
+  Widget _title(String title) {
+    return Padding(
+      child: Text(
+        title,
+        style: Theme.of(context).textTheme.bodyText1,
+      ),
+      padding: const EdgeInsets.only(top: 30, bottom: 20),
+    );
   }
 }

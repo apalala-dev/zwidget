@@ -25,7 +25,7 @@ class _AnimatedExampleState extends State<AnimatedExample> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       _size = MediaQuery.of(context).size;
       _statusBarHeight = MediaQuery.of(context).viewPadding.top;
     });
@@ -58,7 +58,7 @@ class _AnimatedExampleState extends State<AnimatedExample> {
                 });
               }
             },
-            child: ZWidget(
+            child: ZWidget.backwards(
               key: _contentKey,
               midChild: ClipRect(
                   child: CustomPaint(
@@ -69,7 +69,6 @@ class _AnimatedExampleState extends State<AnimatedExample> {
               rotationY: _rotationY,
               layers: 11,
               depth: 12,
-              direction: ZDirection.backwards,
             ),
           ),
         ),
