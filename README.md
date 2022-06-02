@@ -14,6 +14,7 @@ Here are a few examples with `Text`, `FlutterLogo`, `Ìmage`, `Icon` and `Custom
 ![Various static examples](media/zwidget_various_examples.png)
 
 You can also animate them:
+
 ![Demo gif](media/zwidget_animated.gif)
 
 The `example` project includes these demos and a few more.
@@ -22,7 +23,7 @@ The `example` project includes these demos and a few more.
 
 ZWidget includes several constructors depending on the direction where you want your perspective effect to be.
 
-### `ZWidget.backwards()`, `ZWidget.forwards()` and `ZWidget.bothDirections()`
+### ZWidget.backwards(), ZWidget.forwards() and ZWidget.bothDirections()
 
 ![ZWidget direction constructors](media/zwidget_direction_constructors.png)
 
@@ -91,16 +92,18 @@ Use the `alignment` property to set the `Transform` origin.
 
 To effectively see the 3D effect, you must define a rotation to the ZWidget using `rotationX` and `rotationY`.
 
-### `ZWidget.builder()`
+### ZWidget.builder()
 
 In case you would like to control which Widget is displayed at each layer, you may use `Widget.builder()`.
 It can be used to make a gradient effect for instance.
+
 Here are a few examples:
+
 ![ZWidget builder examples](media/zwidget_builder.png)
 
 
 
-### `Zwidget()`
+### ZWidget()
 
 While the base `ZWidget` constructor works, it may lead newcomers to define parameters that are not needed.
 Therefore, it is now deprecated and you should use the other constructors instead.
@@ -174,7 +177,7 @@ This transformations is done using a `Transform` widget and a `Matrix4`. If you'
 ### zMatrix4
 
 This method returns a `Matrix4` used to perform 3D transformations.
-You can use it on anything accepting a `Matrix4` (Widget, Canvas, Path, ...)
+You can use it on anything accepting a `Matrix4` (Widget, Canvas, Path, ...).
 
 
 #### Widget example
